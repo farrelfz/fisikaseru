@@ -13,19 +13,16 @@
 
 ## Langkah pindah simulasi ke repo baru
 1) Buat repo publik `fisikaseru-simulasi` (org Fisikaseru).
-2) Dari `fisikaseru.github.io`, pindahkan konten simulasi ke repo baru (gunakan `git mv` bila riwayat ingin ikut):
-   ```
-   # di clone fisikaseru.github.io lama
-   git mv simulasi ../fisikaseru-simulasi/
-   ```
-   Jika tidak satu working tree, salin manual lalu commit di repo baru.
+2) Pindahkan konten simulasi:
+   - Jika ingin mempertahankan riwayat di repo baru, gunakan `git filter-repo`/`filter-branch` untuk mengekstrak folder `simulasi` ke repo baru.
+   - Opsi sederhana: salin manual isi `simulasi` ke clone `fisikaseru-simulasi`, lalu commit pertama di sana.
 
 ## Menautkan submodule pada `fisikaseru.github.io`
 ```
 cd fisikaseru.github.io
-rm -rf simulasi            # atau git rm -r simulasi jika ingin commit penghapusan
+git rm -r simulasi            # pastikan sudah ada backup/di repo baru
 git submodule add https://github.com/Fisikaseru/fisikaseru-simulasi simulasi
-git commit -am "Add simulasi submodule"
+git commit -m "Add simulasi submodule"
 git push
 ```
 
