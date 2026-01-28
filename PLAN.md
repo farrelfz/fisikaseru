@@ -14,7 +14,7 @@
 ## Langkah pindah simulasi ke repo baru
 1) Buat repo publik `fisikaseru-simulasi` (org Fisikaseru).
 2) Pindahkan konten simulasi:
-   - Jika ingin mempertahankan riwayat di repo baru, gunakan `git filter-repo`/`filter-branch` untuk mengekstrak folder `simulasi` ke repo baru.
+   - Jika ingin mempertahankan riwayat di repo baru, gunakan `git filter-repo` (perlu instalasi terpisah) atau `git filter-branch` untuk mengekstrak folder `simulasi` ke repo baru.
    - Opsi sederhana: salin manual isi `simulasi` ke clone `fisikaseru-simulasi`, lalu commit pertama di sana.
 
 ## Menautkan submodule pada `fisikaseru.github.io`
@@ -30,10 +30,10 @@ git push
 File: `.github/workflows/pages.yml`
 - `actions/checkout@v4` dengan `submodules: recursive`
 - `actions/configure-pages@v4`
-- `actions/upload-pages-artifact@v3` path `./out` (hasil `next export`)
+- `actions/upload-pages-artifact@v3` path `./out` (hasil build statis)
 - `actions/deploy-pages@v4`
 - permissions: `contents: read`, `pages: write`, `id-token: write`
-- upload path root (`.`) karena situs statis
+- upload path `./out` (hasil build)
 
 ## Checklist verifikasi deploy
 - Buka https://fisikaseru.github.io dan https://fisikaseru.github.io/simulasi

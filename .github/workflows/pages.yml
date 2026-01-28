@@ -24,6 +24,9 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -33,16 +36,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build and export static site
+      - name: Build static site
         env:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
-        run: |
-          npm run build
-          npx next export
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
+        run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
