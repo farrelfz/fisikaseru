@@ -29,8 +29,8 @@ git push
 ## Workflow GitHub Pages (di repo fisikaseru.github.io)
 File: `.github/workflows/pages.yml`
 - `actions/checkout@v4` dengan `submodules: recursive`
-- `actions/configure-pages@v5`
-- `actions/upload-pages-artifact@v3` path `.`
+- `actions/configure-pages@v4`
+- `actions/upload-pages-artifact@v3` path `./out` (hasil `next export`)
 - `actions/deploy-pages@v4`
 - permissions: `contents: read`, `pages: write`, `id-token: write`
 - upload path root (`.`) karena situs statis
