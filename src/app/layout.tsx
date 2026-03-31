@@ -1,38 +1,28 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import Link from "next/link";
 import "./globals.css";
-import { cn } from "@/lib/utils";
-import { AppProviders } from "@/providers/app-providers";
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
-
-const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
-const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-display" });
 
 export const metadata: Metadata = {
-  title: "FisikaSeru | Lab Virtual & Kuis Adaptif",
-  description: "Platform edtech fisika berisi simulasi MilikanLab, kuis adaptif, dan roadmap belajar bertahap."
+  title: "FisikaSeru — Interactive 3D Physics Learning Platform",
+  description: "Belajar fisika lewat simulasi 3D interaktif berbasis web."
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="id" suppressHydrationWarning>
-      <body
-        className={cn(
-          "min-h-screen bg-background text-foreground",
-          inter.variable,
-          spaceGrotesk.variable,
-          "font-body"
-        )}
-      >
-        <AppProviders>
-          <div className="relative flex min-h-screen flex-col">
-            <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,_rgba(255,215,0,0.25),_transparent_55%)]" />
-            <Navbar />
-            <main className="flex-1 bg-gradient-to-b from-white via-brand-sky/10 to-brand-midnight/5">{children}</main>
-            <Footer />
+    <html lang="en">
+      <body className="bg-[#F0F9FF] font-[Inter,system-ui,sans-serif] text-slate-900">
+        <nav className="border-b border-blue-100 bg-white/90 backdrop-blur">
+          <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+            <Link href="/" className="text-xl font-bold text-blue-600">
+              FisikaSeru
+            </Link>
+            <div className="flex items-center gap-5 text-sm font-medium">
+              <Link href="/">Home</Link>
+              <Link href="/simulations">Simulations</Link>
+            </div>
           </div>
-        </AppProviders>
+        </nav>
+        <main className="mx-auto min-h-[calc(100vh-65px)] w-full max-w-6xl px-6 py-8">{children}</main>
       </body>
     </html>
   );
